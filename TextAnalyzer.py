@@ -6,6 +6,7 @@ Created on Thu Mar 22 22:04:15 2018
 """
 
 import nltk;
+from nltk.book import FreqDist
 import tokenize_uk;
 import pymorphy2;
 
@@ -23,6 +24,8 @@ class TextAnalyzer:
         self.types = set(self.tokens);
         self.unique_words = set([w.lower() for w in self.types if w.isalpha()]);
         self.morph_analyzer = pymorphy2.MorphAnalyzer(lang='uk');
+        
+        self.lemmatised_tokens = self.lemmatise(self.tokens);
     
     def change_apostrophe(self, text):
         return text.replace("’", "'");
@@ -44,18 +47,25 @@ class TextAnalyzer:
                 uncertain_words.append(t);
         return uncertain_words;
     
-    
-    
-    def init_analisys(self):
-        #pymorphy part
-        morph = pymorphy2.MorphAnalyzer(lang='uk');
-        numbers = []
-        for t in self.types:
-            p = morph.parse(t);
-            numbers.append(len(p));
-            p=p[0];
+    def lemmatise(self, data):
+        lemmas = [];
+        for t in data:
+            lemmas.append(self.morph_analyzer.parse(t)[0].normal_form);
+        return lemmas;
         
+    
+    def distribution(self, data):
+        fdist = FreqDist(data);
+        return fdist;
+    
+    
+    def define_vital_types(self, data):
+        vital_types = []
+        for t in data:
+            p = self.morph_analyzer.parse(t);
+            if len(p)==0:
+                print('!!')
+            p = p[0];
             if p.tag.POS and p.tag.POS in self.vitalPOSs:
-                print(t, p.tag.POS);
-
-        print(numbers);
+                vital_types.append(t)
+        return vital_types;

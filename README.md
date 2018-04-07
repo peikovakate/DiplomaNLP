@@ -1,2 +1,3 @@
 # DiplomaNLP
-Diploma project in NLP
+Master diploma project in NLP
+Topic: Test generation for ukrainian texts
