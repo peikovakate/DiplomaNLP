@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 20 11:07:15 2018
-
-@author: peiko
-"""
-
 #number of symbols
 #number of tokens
 #number of sents
@@ -16,7 +9,7 @@ Created on Tue Mar 20 11:07:15 2018
 from TextAnalyzer import TextAnalyzer
 
 
-f = open("texts/biology.txt");
+f = open("texts/discrete_math.txt");
 raw = f.read();
 
 analyzer = TextAnalyzer(raw);
