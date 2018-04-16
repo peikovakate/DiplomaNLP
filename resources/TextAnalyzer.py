@@ -1,14 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 22 22:04:15 2018
-
-@author: peiko
-"""
-
-import nltk
-from nltk.book import FreqDist
+# from nltk.book import FreqDist
 import tokenize_uk
 import pymorphy2
+import collections
 
 
 class TextAnalyzer:
@@ -17,7 +10,7 @@ class TextAnalyzer:
     def __init__(self, raw):
         self.raw_text = raw
 
-        # changing aposstrophe character for pymorpty2
+        # changing aposstrophe character for pymorphy2
         self.raw_text = self.change_apostrophe(self.raw_text)
 
         # self.tokens = nltk.word_tokenize(self.raw_text)
@@ -55,8 +48,8 @@ class TextAnalyzer:
         return lemmas
 
     def distribution(self, data):
-        fdist = FreqDist(data)
-        return fdist
+        distr = collections.Counter(data);
+        return distr
 
     def posTags(self):
         poss = []

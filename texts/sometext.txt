@@ -1,0 +1,29 @@
+Сьогодні	ADVB
+була	VERB
+гарна	ADJF
+погода	NOUN
+.	.
+
+На	PREP
+небі	NOUN
+були	VERB
+хмаринки	NOUN
+.	.
+
+Хлопчик	NOUN
+Паша	NOUN
+вийшов	VERB
+пограти	INFN
+на	PREP
+вулицю	NOUN
+.	.
+
+Паша	NOUN
+побачив	VERB
+гарний	ADJF
+м'ячик	NOUN
+на	PREP
+гральному	ADJF
+майданчику	NOUN
+.	.
+
