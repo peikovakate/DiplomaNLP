@@ -58,6 +58,22 @@ class TextAnalyzer:
             poss.append(p[0].tag.POS)
         return poss
 
+    def pos_for_udp(self):
+        poss = []
+        for token in self.tokens:
+            if token in ".!?":
+                poss.append(".")
+            elif token.isnumeric():
+                poss.append("NUMR")
+            else:
+                p = self.morph_analyzer.parse(token)
+                tag = p[0].tag.POS
+                poss.append(tag if tag is not None else "X")
+        return poss
+
+
+
+    # todo: rewrite this method
     def define_vital_types(self, data):
         vital_types = []
         for t in data:
