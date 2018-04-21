@@ -84,7 +84,9 @@ class TextAnalyzer:
                 poss.append(tag if tag is not None else "X")
         return poss
 
+    # todo: change method logic! it doesn't work at all!!!
     def get_most_used(self, parses):
+
         dictionaryAnalyzer_parses = []
         for p in parses:
             if len(p.methods_stack[0]) is 4:
