@@ -87,6 +87,8 @@ class TextAnalyzer:
     # todo: change method logic! it doesn't work at all!!!
     def get_most_used(self, parses):
 
+        return parses[0]
+
         dictionaryAnalyzer_parses = []
         for p in parses:
             if len(p.methods_stack[0]) is 4:

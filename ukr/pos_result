@@ -1,0 +1,18 @@
+1	в	_	ADP	_	_	2	case	_	_
+2	одному	_	PRON	_	_	5	obl	_	_
+3	селищі	_	NOUN	_	_	5	nsubj	_	_
+4	цирульника	_	NOUN	_	_	3	nmod	_	_
+5	зобов'язали	_	VERB	_	_	0	root	_	_
+6	голити	_	VERB	_	_	5	xcomp	_	_
+7	всіх	_	PRON	_	_	6	iobj	_	_
+8	тих	_	PRON	_	_	6	obj	_	_
+9	мешканців	_	NOUN	_	_	0	root	_	_
+10	і	_	CONJ	_	_	0	root	_	_
+11	тільки	_	PART	_	_	12	discourse	_	_
+12	тих	_	PRON	_	_	0	root	_	_
+13	,	_	PUNCT	_	_	16	punct	_	_
+14	які	_	PRON	_	_	16	obj	_	_
+15	не	_	PART	_	_	16	discourse	_	_
+16	голяться	_	VERB	_	_	12	acl	_	_
+17	самі	_	PRON	_	_	12	nsubj	_	_
+

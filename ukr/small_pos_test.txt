@@ -1,0 +1,3 @@
+Інформатика_NOUN вивчає_VERB різні_ADJ комп'ютерні_ADJ дисципліни_NOUN ._PUNCT
+Вони_NOUN вважали_VERB :_PUNCT жива_ADJ природа_NOUN розвивається_VERB у_ADP часі_NOUN ,_PUNCT організми_NOUN виникли_VERB з_ADP неорганічних_ADJ речовин_NOUN ,_PUNCT а_CCONJ види_NOUN здатні_ADJ змінюватися_VERB ._PUNCT
+Вони_NOUN вважали_VERB :_PUNCT жива_ADJ природа_NOUN розвивається_VERB у_ADP часі_NOUN ,_PUNCT організми_NOUN виникли_VERB з_ADP неорганічних_ADJ речовин_NOUN ,_PUNCT а_CCONJ види_NOUN здатні_VERB змінюватися_VERB ._PUNCT
