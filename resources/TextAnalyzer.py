@@ -7,7 +7,6 @@ import collections
 
 
 class TextAnalyzer:
-    vitalPOSs = 'NOUN VERB ADJS ADVB NUMB'
 
     def __init__(self, raw):
         self.raw_text = raw
@@ -16,76 +15,71 @@ class TextAnalyzer:
         self.raw_text = self.change_apostrophe(self.raw_text)
 
         # self.tokens = nltk.word_tokenize(self.raw_text)
-        self.tokens = tokenize_uk.tokenize_words(self.raw_text)
+        self.tokens = self.tokenize_words(self.raw_text)
         self.types = set(self.tokens)
         self.unique_words = set([w.lower() for w in self.types if w.isalpha()])
-        self.morph_analyzer = pymorphy2.MorphAnalyzer(lang='uk')
+
         self.parses = self.get_parses(self.tokens)
         self.lemmatised_tokens = self.lemmatise()
 
-
-    def get_parses(self, tokens):
+    @staticmethod
+    def get_parses(tokens):
+        morph_analyzer = pymorphy2.MorphAnalyzer(lang='uk')
         parses = []
         for t in tokens:
-            parses.append(self.get_most_used(self.morph_analyzer.parse(t)))
+            parses.append(TextAnalyzer.get_most_used(morph_analyzer.parse(t)))
 
         return parses
 
-    def change_apostrophe(self, text):
+    @staticmethod
+    def tokenize_words(raw):
+        return tokenize_uk.tokenize_words(raw)
+
+    @staticmethod
+    def tokenize_sentences(raw):
+        return tokenize_uk.tokenize_sents(raw)
+
+    @staticmethod
+    def change_apostrophe(text):
         return text.replace("’", "'")
 
-    def text_length(self):
-        return len(self.raw_text)
+    @staticmethod
+    def text_length(raw_text):
+        return len(raw_text)
 
-    def number_of_tokens(self):
-        return len(self.tokens)
-
-    def number_of_types(self):
-        return len(self.types)
-
-    # finding words where pymorphy2 confidence score < 1
-    def uncertain_words(self):
-        uncertain_words = []
-        for t in self.types:
-            if self.morph_analyzer.parse(t)[0].score < 1:
-                uncertain_words.append(t)
-        return uncertain_words
-
-    def lemmatise(self, data=None):
+    @staticmethod
+    def lemmatise(tokens):
         lemmas = []
-        parses = []
-        if data is None:
-            parses = self.parses
-        else:
-            parses = self.get_parses(data)
+        parses = TextAnalyzer.get_parses(tokens)
         for t in parses:
             lemmas.append(t.normal_form)
         return lemmas
 
-    def distribution(self, data):
+    @staticmethod
+    def distribution(data):
         distr = collections.Counter(data)
         return distr
 
-    def posTags(self, tokens=None):
-        if tokens is None:
-            return [p.tag.POS for p in self.parses]
-        else:
-            return [p.tag.POS for p in self.get_parses(tokens)]
-        return poss
+    @staticmethod
+    def posTags(tokens):
+        return [p.tag.POS for p in TextAnalyzer.get_parses(tokens)]
 
-    def pos_for_udp(self):
+    @staticmethod
+    def pos_for_udp(tokens):
+        morph_analyzer = pymorphy2.MorphAnalyzer(lang='uk')
         poss = []
-        for token in self.tokens:
+        for token in tokens:
             if token.isnumeric():
                 poss.append("NUMR")
             else:
-                p = self.morph_analyzer.parse(token)
-                tag = self.get_most_used(p).tag.POS
+                p = morph_analyzer.parse(token)
+                tag = TextAnalyzer.get_most_used(p).tag.POS
                 poss.append(tag if tag is not None else "X")
         return poss
 
     # todo: change method logic! it doesn't work at all!!!
-    def get_most_used(self, parses):
+    @staticmethod
+    def get_most_used(parses):
 
         return parses[0]
 
@@ -103,14 +97,12 @@ class TextAnalyzer:
                 return p
         return parses[0]
 
-    def define_vital_types(self, tokens=None):
+    @staticmethod
+    def define_vital_types(tokens):
+        vitalPOSs = 'NOUN VERB ADJS ADVB NUMB'
         vital_types = []
-        parses = []
-        if tokens is None:
-            parses = self.parses
-        else:
-            parses = self.get_parses(tokens)
+        parses = TextAnalyzer.get_parses(tokens)
         for p in parses:
-            if p.tag.POS and p.tag.POS in self.vitalPOSs:
+            if p.tag.POS and p.tag.POS in vitalPOSs:
                 vital_types.append(p.word)
         return vital_types

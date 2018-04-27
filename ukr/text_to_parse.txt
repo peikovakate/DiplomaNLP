@@ -1,1 +1,1 @@
-в_ADP одному_PRON селищі_NOUN цирульника_NOUN зобов'язали_VERB голити_VERB всіх_PRON тих_PRON мешканців_NOUN і_CONJ тільки_PART тих_PRON ,_PUNCT які_PRON не_PART голяться_VERB самі_PRON
+Повстання_NOUN в_ADP Греції_NOUN розпочалося_VERB у_ADP другій_ADJ половині_NOUN березня_NOUN 1821_NUM року_NOUN ._PUNCT
