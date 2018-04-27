@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from resources.TextAnalyzer import TextAnalyzer
 from resources.read_conll import ConllReader
 
+
 def sents_to_file(lines):
     file = open("../ukr/text_to_parse.txt", "w")
     for line in lines:
@@ -68,3 +69,6 @@ trees = ConllReader.read("../ukr/pos_result")
 for tree in trees:
     print("tree:")
     print("\n".join('\t'.join(w) for w in tree))
+    graph = TextAnalyzer.graph(tree)
+    for edge in graph:
+        print(edge, graph[edge])

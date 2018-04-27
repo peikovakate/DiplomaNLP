@@ -2,25 +2,13 @@
 import tokenize_uk
 import pymorphy2
 import collections
+import networkx as nx
+
 
 # todo: fix function words: 'до' -> preposition, however 'як' -> noun
 
 
 class TextAnalyzer:
-
-    def __init__(self, raw):
-        self.raw_text = raw
-
-        # changing aposstrophe character for pymorphy2
-        self.raw_text = self.change_apostrophe(self.raw_text)
-
-        # self.tokens = nltk.word_tokenize(self.raw_text)
-        self.tokens = self.tokenize_words(self.raw_text)
-        self.types = set(self.tokens)
-        self.unique_words = set([w.lower() for w in self.types if w.isalpha()])
-
-        self.parses = self.get_parses(self.tokens)
-        self.lemmatised_tokens = self.lemmatise()
 
     @staticmethod
     def get_parses(tokens):
@@ -106,3 +94,11 @@ class TextAnalyzer:
             if p.tag.POS and p.tag.POS in vitalPOSs:
                 vital_types.append(p.word)
         return vital_types
+
+    @staticmethod
+    def graph(conll_sent):
+        graph = nx.DiGraph()
+        for conll_token in conll_sent:
+            graph.add_edge(conll_token[6], conll_token[0], {"relation": conll_token[7]})
+        return graph
+
