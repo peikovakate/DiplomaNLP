@@ -10,13 +10,13 @@ class ConllReader:
         lines_of_tree = []
 
         for line in lines:
-            if line is '\n':
+            if line == '\n':
                 trees.append(ConllReader.split_tree(lines_of_tree))
                 lines_of_tree.clear()
             else:
                 lines_of_tree.append(line)
         # if we got to the end of files, but the lust sent still in buffer of lines_of_tree
-        if len(lines_of_tree) is not 0:
+        if len(lines_of_tree) != 0:
             trees.append(ConllReader.split_tree(lines_of_tree))
 
         return trees

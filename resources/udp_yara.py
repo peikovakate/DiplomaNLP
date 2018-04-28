@@ -4,6 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from resources.TextAnalyzer import TextAnalyzer
 from resources.read_conll import ConllReader
+from resources.question_generator import QuestionGenerator
 
 
 def sents_to_file(lines):
@@ -47,8 +48,8 @@ def sents_to_word_POS(sents):
     return lines
 
 
-sent = "У вакуумі електромагнітна хвиля розповсюджується із швидкістю, яка називається швидкістю світла. Швидкість світла є фундаментальною фізичною константою, яка позначається латинською літерою с. Згідно із основним постулатом теорії відносності швидкість світла є максимально можливою швидкістю передачі інформації чи руху тіла. Ця швидкість становить 299 792 458 м/с."
-text = "Перевірку пройшли декілька дівчат: гарна Маша, розумна Юля, світла Катя. " \
+text = "У вакуумі електромагнітна хвиля розповсюджується із швидкістю, яка називається швидкістю світла. Швидкість світла є фундаментальною фізичною константою, яка позначається латинською літерою с. Згідно із основним постулатом теорії відносності швидкість світла є максимально можливою швидкістю передачі інформації чи руху тіла. Ця швидкість становить 299 792 458 м/с."
+sent = "Перевірку пройшли декілька дівчат: гарна Маша, розумна Юля, світла Катя. " \
        "Вони вважали: жива природа розвивається у часі, організми виникли з неорганічних речовин, а види здатні змінюватися. " \
        "Перший елемент, що вибирається в підмножину з множини, може входити, а може і не входити в підмножину, що будується."
 
@@ -70,5 +71,10 @@ for tree in trees:
     print("tree:")
     print("\n".join('\t'.join(w) for w in tree))
     graph = TextAnalyzer.graph(tree)
-    for edge in graph:
-        print(edge, graph[edge])
+    tokens_str = [word[1] for word in tree]
+    print(tokens_str)
+    print(graph[0])
+    # for edge in graph:
+    #     print(edge, graph[edge])
+
+    print(QuestionGenerator.subj_question(graph, tokens_str))

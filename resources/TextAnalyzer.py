@@ -99,6 +99,15 @@ class TextAnalyzer:
     def graph(conll_sent):
         graph = nx.DiGraph()
         for conll_token in conll_sent:
-            graph.add_edge(conll_token[6], conll_token[0], {"relation": conll_token[7]})
+            graph.add_edge(int(conll_token[6]), int(conll_token[0]), {"relation": conll_token[7]})
         return graph
 
+    @staticmethod
+    def dict_of_tokens(tokens):
+        dict = {}
+        dict[0] = 'ROOT'
+
+        for i in range(0, len(tokens)):
+
+            dict[i+1] = tokens[i]
+        return dict
