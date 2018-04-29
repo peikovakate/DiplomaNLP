@@ -1,4 +1,4 @@
-from resources.read_conll import ConllReader
+from resources.tools.read_conll import ConllReader
 
 class POSTagger:
     def __init__(self, model_file='../ukr/pos_model'):

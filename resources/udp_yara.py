@@ -1,8 +1,7 @@
 from subprocess import check_output
 
-import networkx as nx
 from resources.TextAnalyzer import TextAnalyzer
-from resources.read_conll import ConllReader
+from resources.tools.read_conll import ConllReader
 from resources.question_generator import QuestionGenerator
 
 
