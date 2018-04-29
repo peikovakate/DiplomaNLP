@@ -8,8 +8,17 @@ class QuestionGenerator:
         subj_sents = []
         for token_ids in subjs:
             ids = sorted(token_ids)
-            subj_sents.append(" ".join(tokens[index-1] for index in ids))
+            subj = QuestionGenerator.ids_to_tokens(ids, tokens)
+            other_words_ids = set(range(1, len(tokens)+1))-set(ids)
+            question = QuestionGenerator.ids_to_tokens(other_words_ids, tokens)
+            question = 'Що(хто) ' + question + '?'
+            question += ' ' + subj
+            subj_sents.append(question)
         return subj_sents
+
+    @staticmethod
+    def ids_to_tokens(ids, tokens):
+        return " ".join(tokens[index-1] for index in ids)
 
     @staticmethod
     def get_vertexes_with_relation(graph, parent, relation):
