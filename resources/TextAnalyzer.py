@@ -3,7 +3,7 @@ import tokenize_uk
 import pymorphy2
 import collections
 import networkx as nx
-
+from resources.pos_tagger import POSTagger
 
 # todo: fix function words: 'до' -> preposition, however 'як' -> noun
 
@@ -15,8 +15,7 @@ class TextAnalyzer:
         morph_analyzer = pymorphy2.MorphAnalyzer(lang='uk')
         parses = []
         for t in tokens:
-            parses.append(TextAnalyzer.get_most_used(morph_analyzer.parse(t)))
-
+            parses.append(TextAnalyzer.get_first(morph_analyzer.parse(t)))
         return parses
 
     @staticmethod
@@ -49,11 +48,8 @@ class TextAnalyzer:
         return distr
 
     @staticmethod
-    def posTags(tokens):
-        return [p.tag.POS for p in TextAnalyzer.get_parses(tokens)]
-
-    @staticmethod
     def pos_for_udp(tokens):
+        '''pos tagging of tokens list using only pymorphy2'''
         morph_analyzer = pymorphy2.MorphAnalyzer(lang='uk')
         poss = []
         for token in tokens:
@@ -61,28 +57,13 @@ class TextAnalyzer:
                 poss.append("NUMR")
             else:
                 p = morph_analyzer.parse(token)
-                tag = TextAnalyzer.get_most_used(p).tag.POS
+                tag = TextAnalyzer.get_first(p).tag.POS
                 poss.append(tag if tag is not None else "X")
         return poss
 
     # todo: change method logic! it doesn't work at all!!!
     @staticmethod
-    def get_most_used(parses):
-
-        return parses[0]
-
-        dictionaryAnalyzer_parses = []
-        for p in parses:
-            if len(p.methods_stack[0]) is 4:
-                dictionaryAnalyzer_parses.append(p)
-
-        if len(dictionaryAnalyzer_parses) < 1:
-            return parses[0]
-
-        mn = max([p.methods_stack[0][2] for p in dictionaryAnalyzer_parses])
-        for p in dictionaryAnalyzer_parses:
-            if p.methods_stack[0][2] is mn:
-                return p
+    def get_first(parses):
         return parses[0]
 
     @staticmethod
@@ -97,6 +78,7 @@ class TextAnalyzer:
 
     @staticmethod
     def graph(conll_sent):
+        '''sentence in conll format (list of list) to networkx directed graph'''
         graph = nx.DiGraph()
         for conll_token in conll_sent:
             graph.add_edge(int(conll_token[6]), int(conll_token[0]), {"relation": conll_token[7]})
@@ -106,8 +88,48 @@ class TextAnalyzer:
     def dict_of_tokens(tokens):
         dict = {}
         dict[0] = 'ROOT'
-
         for i in range(0, len(tokens)):
-
             dict[i+1] = tokens[i]
         return dict
+
+    @staticmethod
+    def ud_pos_tags(tokens):
+        '''universal pos tagging list of tokens using pymorphy2 and custom POSTagger'''
+        # TODO: find best model for opencorpora to ud pos tags converting
+        opencp_ud = {
+            'ADJF': 'ADJ',
+            'ADJS': 'ADJ',
+            'ADVB': 'ADV',
+            'Apro': 'DET',
+            'COMP': 'ADV',
+            'CONJ': 'CONJ',
+            'GRND': 'VERB',
+            'INFN': 'VERB',
+            'INTJ': 'INTJ',
+            'NOUN': 'NOUN',
+            'NPRO': 'ADJ',  # npro pron -> npro adj
+            'NUMR': 'NUM',
+            'NUMB': 'NUM',
+            'PART': 'PRCL',
+            'PNCT': 'PUNCT',
+            'PRCL': 'PART',
+            'PREP': 'ADP',
+            'PRTF': 'VERB',
+            'PRTS': 'VERB',
+            'VERB': 'VERB',
+            'X': 'PUNCT',
+        }
+
+        tags = []
+        pos_tagger = POSTagger()
+        parser = pymorphy2.MorphAnalyzer(lang='uk')
+        for token in tokens:
+            t = pos_tagger.most_freq_tag(token)
+            if t == '':
+                t = parser.parse(token)[0].tag.POS
+                if t in opencp_ud:
+                    t = opencp_ud[t]
+                else:
+                    t = 'X'
+            tags.append(t)
+        return tags
