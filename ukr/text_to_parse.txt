@@ -1,3 +1,0 @@
-Перевірку_NOUN пройшли_VERB декілька_ADJ дівчат_NOUN :_PUNCT гарна_ADJ Маша_NOUN ,_PUNCT розумна_ADJ Юля_NOUN ,_PUNCT світла_ADJ Катя_NOUN ._PUNCT
-Вони_ADJ вважали_VERB :_PUNCT жива_ADJ природа_NOUN розвивається_VERB у_ADP часі_NOUN ,_PUNCT організми_NOUN виникли_VERB з_ADP неорганічних_ADJ речовин_NOUN ,_PUNCT а_CONJ види_NOUN здатні_ADJ змінюватися_VERB ._PUNCT
-Перший_ADJ елемент_NOUN ,_PUNCT що_CONJ вибирається_VERB в_ADP підмножину_NOUN з_ADP множини_NOUN ,_PUNCT може_PUNCT входити_VERB ,_PUNCT а_CONJ може_PUNCT і_CONJ не_PART входити_VERB в_ADP підмножину_NOUN ,_PUNCT що_CONJ будується_VERB ._PUNCT
