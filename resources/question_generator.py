@@ -3,7 +3,6 @@ class QuestionGenerator:
 
     @staticmethod
     def subj_question(sentence_graph, tokens):
-        print("root = ", sentence_graph[0])
         root = list(sentence_graph[0])[0]
         subjs = QuestionGenerator.get_tokens_indexes_under_relation(sentence_graph, root, "nsubj")
         subj_sents = []

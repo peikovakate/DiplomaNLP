@@ -66,8 +66,4 @@ class POSTagger:
             file.write(string)
         file.close()
 
-
-
 # POSTagger.train('../ukr/train.conll', '../ukr/pos_model')
-tagger = POSTagger()
-print(tagger.most_freq_tag('у'))
