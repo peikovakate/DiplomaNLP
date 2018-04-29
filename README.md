@@ -17,11 +17,8 @@ http://universaldependencies.org/#language-
 Gold standard Universal Dependencies corpus for Ukrainian
 https://github.com/UniversalDependencies/UD_Ukrainian-IU/tree/master
 
-
-
-
-
 notes:
+In need of nice tool of converting opencorpora pos tag to universal dependency pos tag
+some problems samples:
 ???? NPRO	PRON => NPRO	ADJ
-
 ???? PREP	ADP => PREP	PRT
