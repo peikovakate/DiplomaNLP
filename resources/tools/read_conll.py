@@ -3,7 +3,7 @@ class ConllReader:
     @staticmethod
     def read(file_name):
         trees = []
-        file = open(file_name, "r")
+        file = open(file_name, "r", encoding='utf-8')
         lines = file.readlines()
         file.close()
         lines_of_tree = []
