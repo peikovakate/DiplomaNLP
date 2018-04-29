@@ -1,4 +1,5 @@
 # from nltk.book import FreqDist
+import nltk
 import tokenize_uk
 import pymorphy2
 import collections
@@ -19,15 +20,30 @@ class TextAnalyzer:
         return parses
 
     @staticmethod
-    def tokenize_words(raw):
-        return tokenize_uk.tokenize_words(raw)
+    def tokenize_words(raw, is_tokenize_uk=False):
+        """
+        uses nltk by default
+        if 'is_tokenize_uk' is True, then uses tokenize_uk
+        """
+        if is_tokenize_uk:
+            return tokenize_uk.tokenize_words(raw)
+        else:
+            return nltk.word_tokenize(raw)
 
     @staticmethod
-    def tokenize_sentences(raw):
-        return tokenize_uk.tokenize_sents(raw)
+    def tokenize_sentences(raw, is_tokenize_uk=False):
+        """
+        uses nltk by default
+        if 'is_tokenize_uk' is True, then uses tokenize_uk
+        """
+        if is_tokenize_uk:
+            return tokenize_uk.tokenize_sents(raw)
+        else:
+            return nltk.sent_tokenize(raw)
 
     @staticmethod
     def change_apostrophe(text):
+        """vital for nltk tokenization and pymorphy2 parsing"""
         return text.replace("’", "'")
 
     @staticmethod
