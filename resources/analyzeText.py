@@ -46,14 +46,3 @@ class TestGenerator:
         raw = f.read()
 
         return TestGenerator.generate_test(raw)
-
-
-file = "../texts/short_text.txt"
-print(TestGenerator.generate_test_for_file(file))
-
-
-
-
-
-
-
