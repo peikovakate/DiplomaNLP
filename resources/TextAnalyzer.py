@@ -140,7 +140,7 @@ class TextAnalyzer:
         pos_tagger = POSTagger()
         parser = pymorphy2.MorphAnalyzer(lang='uk')
         for token in tokens:
-            t = pos_tagger.most_freq_tag(token)
+            t = pos_tagger.most_freq_tag(token.lower())
             if t == '':
                 t = parser.parse(token)[0].tag.POS
                 if t in opencp_ud:
