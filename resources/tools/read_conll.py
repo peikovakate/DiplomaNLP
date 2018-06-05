@@ -2,23 +2,11 @@ class ConllReader:
     # todo: check for multiple trees from parser
     @staticmethod
     def read(file_name):
-        trees = []
+
         file = open(file_name, "r", encoding='utf-8')
-        lines = file.readlines()
+        text = file.read()
         file.close()
-        lines_of_tree = []
-
-        for line in lines:
-            if line == '\n':
-                trees.append(ConllReader.split_tree(lines_of_tree))
-                lines_of_tree.clear()
-            elif line[0] != '#':
-                lines_of_tree.append(line)
-        # if we got to the end of files, but the lust sent still in buffer of lines_of_tree
-        if len(lines_of_tree) != 0:
-            trees.append(ConllReader.split_tree(lines_of_tree))
-
-        return trees
+        return ConllReader.parse_conll_format(text)
 
     @staticmethod
     def read_as_raw(file_name):
@@ -30,6 +18,24 @@ class ConllReader:
             if line != '\n' and line[0] != '#':
                 raws.append(ConllReader.split_line(line))
         return raws
+
+    @staticmethod
+    def parse_conll_format(conll_text):
+        lines = conll_text.splitlines()
+        trees = []
+        lines_of_tree = []
+        for line in lines:
+            if line == '\n':
+                trees.append(ConllReader.split_tree(lines_of_tree))
+                lines_of_tree.clear()
+            if line == '':
+                pass
+            elif line[0] != '#':
+                lines_of_tree.append(line)
+        # if we got to the end of files, but the lust sent still in buffer of lines_of_tree
+        if len(lines_of_tree) != 0:
+            trees.append(ConllReader.split_tree(lines_of_tree))
+        return trees
 
     @staticmethod
     def split_line(line):
