@@ -6,15 +6,19 @@ from pyforms.controls import ControlFile
 from pyforms.controls import ControlCheckBoxList
 from pyforms.controls import ControlNumber
 from resources.analyzeText import TestGenerator
+from pyforms.utils.settings_manager import conf;
+import resources.style.settings as settings
+conf+=settings
 from resources.TextAnalyzer import Model
-
-
+# SETTINGS_PRIORITY = 1
+# PYFORMS_STYLESHEET = 'resources/style/style.css'
+# PYFORMS_STYLESHEET_WINDOWS = 'resources/style/style.css'
 class Gui(BaseWidget):
     _input_format = ''
 
     def __init__(self):
         super(Gui, self).__init__('Test Generator')
-
+        # self.setWindow
         # Definition of the forms fields
         self._raw_text = ControlTextArea('Твій текст', 'Встав або введи свій текст сюди.', visible=False)
         self._file_path = ControlFile('Файл', visible=False)
@@ -44,14 +48,14 @@ class Gui(BaseWidget):
         self._settings_tab = [(' ', '_tests_number_control', ' '),
                               (' ', '_test_task_number_control', ' '),
                               '_test_types_checkbox']
+        # self.mainmenu = [{'icon': 'resources/style/exam.png'}]
 
         self.formset = [
             {
                 'a:Текст': self._input_tab,
                 'c:Налаштування тесту': self._settings_tab,
-                'd:Згенеруй тест': self._generate_test_tab
-            }
-
+                'd:Згенеруй тест': self._generate_test_tab,
+            },
         ]
 
     def _generate_test_click(self):
@@ -71,6 +75,7 @@ class Gui(BaseWidget):
         self._input_format = 'file'
         self._input_text_button.checked = False
         self._input_file_button.checked = True
+
 
 pyforms.start_app(Gui, geometry=(600, 200, 600, 400))
 # text = 'Органічна еволюція — це процес історичного розвитку живої природи, що являє собою спрямовані зміни організмів, видів, їх співтовариств і біосфери у цілому.'
