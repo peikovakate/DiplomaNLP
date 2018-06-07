@@ -9,9 +9,14 @@ class MainScreen(FloatLayout):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
 
+    def generate_test(self):
+        print(self.ids.input_text.text)
+
 
 class TestIT(App):
     icon = 'style/list.png'
+
+
 
     def build(self):
         return MainScreen()

@@ -14,6 +14,7 @@
 	size_hint: 1, None
 	height: 30
 
+
 <CheckChoice@BoxLayout>
 	_text: ''
 	CheckBox:
@@ -22,10 +23,6 @@
 	Label:
 		color: 0, 0, 0, 1
 		text: root._text
-
-
-
-
 
 <VerticalBox@BoxLayout>:
 	orientation: 'vertical'
@@ -39,6 +36,7 @@
 	NumberInput:
 
 <MainScreen>:
+	id: main_screen
     BoxLayout:
     	# --- background color ---
         canvas.before:
@@ -56,6 +54,7 @@
         	SmallLabel:
         		text: 'Вхідний текст'
         	TextInput:
+        		id: input_text
 
 		# ------ settings ------
         StackLayout:
@@ -89,7 +88,7 @@
 
         	RunButton:
         		text: 'Сформувати питання'
-
+				on_press: main_screen.generate_test()
 
 
 		# ------ output text ------
@@ -97,7 +96,7 @@
 			SmallLabel:
 				text: 'Згенеровані тести'
         	TextInput:
-
+				id: output_text
 
 
 
