@@ -6,7 +6,7 @@ from pyforms.controls import ControlFile
 from pyforms.controls import ControlCheckBoxList
 from pyforms.controls import ControlNumber
 from resources.analyzeText import TestGenerator
-from pyforms.utils.settings_manager import conf;
+from pyforms.utils.settings_manager import conf
 import resources.style.settings as settings
 conf+=settings
 from resources.TextAnalyzer import Model

@@ -102,6 +102,10 @@ class TextAnalyzer:
         """vital for nltk tokenization and pymorphy2 parsing"""
         return text.replace("’", "'")
 
+    def change_apostrophe_back(text):
+        """vital for nltk tokenization and pymorphy2 parsing"""
+        return text.replace("'", "’")
+
     @staticmethod
     def text_length(raw_text):
         return len(raw_text)

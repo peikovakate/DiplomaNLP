@@ -16,7 +16,7 @@ class ConllReader:
         file.close()
         for line in lines:
             if line != '\n' and line[0] != '#':
-                raws.append(ConllReader.split_line(line))
+                raws.append(ConllReader._split_line(line))
         return raws
 
     @staticmethod
@@ -25,33 +25,33 @@ class ConllReader:
         trees = []
         lines_of_tree = []
         for line in lines:
-            if line == '\n':
-                trees.append(ConllReader.split_tree(lines_of_tree))
+            if (line == '\n' or line == '') and lines_of_tree != []:
+                trees.append(ConllReader._split_tree(lines_of_tree))
                 lines_of_tree.clear()
             if line == '':
                 pass
             elif line[0] != '#':
                 lines_of_tree.append(line)
-        # if we got to the end of files, but the lust sent still in buffer of lines_of_tree
+        # if we got to the end of files, but the last sent still in buffer of lines_of_tree
         if len(lines_of_tree) != 0:
-            trees.append(ConllReader.split_tree(lines_of_tree))
+            trees.append(ConllReader._split_tree(lines_of_tree))
         return trees
 
     @staticmethod
-    def split_line(line):
+    def _split_line(line):
         attributes = line.split("\t")
         # for last attribute there is an additional '\n' sign - end of line, that we get reed of
         attributes[len(attributes) - 1] = attributes[len(attributes) - 1][:-1]
         return attributes
 
     @staticmethod
-    def split_tree(lines):
+    def _split_tree(lines):
         '''takes list of lines that refers to one sentence,
         returns list of description for every word,
         description = list of attributes'''
         tree = []
         for line in lines:
-            tree.append(ConllReader.split_line(line))
+            tree.append(ConllReader._split_line(line))
         return tree
 
 

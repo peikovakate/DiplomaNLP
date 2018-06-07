@@ -20,6 +20,10 @@ class UDParser:
 
         command_str = "java -jar ../YaraParser/YaraParser.jar parse_tagged " \
                       "-input ../ukr/text_to_parse.txt -out ../ukr/pos_result -model ../ukr/tr_model_iter20"
+
+        # command_str = "java -jar ../YaraParser/YaraParser.jar parse_conll  " \
+                      # "-input ../ukr/text_conll_to_parse.conll -out ../ukr/pos_result -model ../ukr/tr_model_iter20"
+
         output = check_output(command_str, shell=True).decode(encoding="utf-8")
         # print(output)
 

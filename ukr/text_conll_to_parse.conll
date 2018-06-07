@@ -1,0 +1,13 @@
+1	Важливу	Важливий	ADJ	Afpfsas	Case=Acc|Degree=Pos|Gender=Fem	2	amod	_	_
+2	роль	роль	NOUN	Ncfsan	Animacy=Inan|Case=Acc|Gender=Fem	7	obj	_	_
+3	у	у	ADP	Spsl	Case=Loc	4	case	_	_
+4	формуванні	формування	NOUN	Ncfsln	Animacy=Inan|Case=Loc|Gender=Fem	2	nmod	_	_
+5	свідомості	свідомість	NOUN	Ncfsgn	Animacy=Inan|Case=Gen|Gender=Fem	4	nmod	_	_
+6	студентів	студент	NOUN	Ncmpgy	Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur	5	nmod	_	_
+7	відіграє	відіграти	VERB	Vmpip3s	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+8	та	та	CCONJ	Ccs	_	9	cc	_	_
+9	пізнає	пізнавати	VERB	Vmpip3s	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	7	conj	_	_
+10	теорія	теорія	NOUN	Ncfsnn	Animacy=Inan|Case=Nom|Gender=Fem	7	nsubj	_	_
+11	несилової	несиловий	ADJ	Ao-fsgf	Case=Gen|Gender=Fem	12	amod	_	_
+12	взаємодії	взаємодія	NOUN	Ncfsgn	Animacy=Inan|Case=Gen|Gender=Fem	10	nmod	_	SpaceAfter=No
+13	.	.	PUNCT	U	_	7	punct	_	SpaceAfter=No

@@ -1,8 +1,8 @@
 import kivy
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
-from kivy.properties import ObjectProperty, StringProperty
 kivy.require('1.10.0')
+from resources.analyzeText import TestGenerator
 
 
 class MainScreen(FloatLayout):
@@ -10,17 +10,20 @@ class MainScreen(FloatLayout):
         super(MainScreen, self).__init__(**kwargs)
 
     def generate_test(self):
-        print(self.ids.input_text.text)
+        raw = self.ids.input_text.text
+        result = TestGenerator.generate_test(raw, is_yara=True)
+        self.ids.output_text.text = result
+
 
 
 class TestIT(App):
     icon = 'style/list.png'
-
-
-
     def build(self):
         return MainScreen()
 
 
-if __name__ == '__main__':
-    TestIT().run()
+TestIT().run()
+
+
+# if __name__ == '__main__':
+#     TestIT().run()
