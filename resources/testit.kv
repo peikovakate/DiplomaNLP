@@ -1,0 +1,103 @@
+<SmallLabel@Label>:
+	color: 0, 0, 0, 1
+	size_hint: 1, 0.05
+
+<NumberInput@TextInput>:
+	input_filter: 'int'
+	multiline: False
+	size_hint: 1, None
+	height: 30
+
+<RunButton@Button>:
+	background_color: .2196, .4667, .502, 1
+	background_normal: ''
+	size_hint: 1, None
+	height: 30
+
+<CheckChoice@BoxLayout>
+	_text: ''
+	CheckBox:
+		color: 0,0,0,1
+		size_hint: 0.1, 1
+	Label:
+		color: 0, 0, 0, 1
+		text: root._text
+
+
+
+
+
+<VerticalBox@BoxLayout>:
+	orientation: 'vertical'
+
+<Set@BoxLayout>
+	#padding_y: 10
+	orientation: 'vertical'
+	_text: ''
+	SmallLabel:
+		text: root._text
+	NumberInput:
+
+<MainScreen>:
+    BoxLayout:
+    	# --- background color ---
+        canvas.before:
+			Color:
+				rgb: .8588, .8314, .8275
+			Rectangle:
+            # self here refers to the widget i.e FloatLayout
+				pos: self.pos
+				size: self.size
+		# ------------------------
+        padding: 10
+
+		# ------ input text ------
+        VerticalBox:
+        	SmallLabel:
+        		text: 'Вхідний текст'
+        	TextInput:
+
+		# ------ settings ------
+        StackLayout:
+        	size_hint: None, 1
+        	width: 250
+        	orientation: 'lr-tb'
+        	padding: 10
+        	Set:
+        		_text: 'Кількість завдань'
+        		size_hint: 1, None
+        		height: 100
+			Set:
+				_text: 'Кількість варіантів'
+				size_hint: 1, None
+        		height: 100
+			VerticalBox:
+				padding: 10
+				size_hint: 1, None
+				height: 150
+				Label:
+					color: 0, 0, 0, 1
+					text: 'Типи завдань:'
+				CheckChoice:
+					_text: 'Один правильний варіант'
+				CheckChoice:
+					_text: 'Множинний вибір'
+				CheckChoice:
+					_text: 'Відкриті питання'
+				CheckChoice:
+					_text: 'Бінарні питання (Так/Ні)'
+
+        	RunButton:
+        		text: 'Сформувати питання'
+
+
+
+		# ------ output text ------
+		VerticalBox:
+			SmallLabel:
+				text: 'Згенеровані тести'
+        	TextInput:
+
+
+
+
