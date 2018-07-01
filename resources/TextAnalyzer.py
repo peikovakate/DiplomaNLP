@@ -8,7 +8,7 @@ from resources.pos_tagger import POSTagger
 
 # todo: fix function words: 'до' -> preposition, however 'як' -> noun
 
-import ufal.udpipe
+# import ufal.udpipe
 
 
 class Model:

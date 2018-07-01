@@ -1,11 +1,12 @@
 <SmallLabel@Label>:
 	color: 0, 0, 0, 1
 	size_hint: 1, 0.05
+	bold: True
 
 <NumberInput@TextInput>:
 	input_filter: 'int'
 	multiline: False
-	size_hint: 1, None
+	size_hint: 0.3, None
 	height: 30
 
 <RunButton@Button>:
@@ -13,7 +14,6 @@
 	background_normal: ''
 	size_hint: 1, None
 	height: 30
-
 
 <CheckChoice@BoxLayout>
 	_text: ''
@@ -28,10 +28,10 @@
 	orientation: 'vertical'
 
 <Set@BoxLayout>
-	#padding_y: 10
-	orientation: 'vertical'
+	orientation: 'horizontal'
 	_text: ''
-	SmallLabel:
+	Label:
+		color: 0, 0, 0, 1
 		text: root._text
 	NumberInput:
 
@@ -51,9 +51,16 @@
 
 		# ------ input text ------
         VerticalBox:
+
         	SmallLabel:
         		text: 'Вхідний текст'
+			RunButton:
+				size_hint: None, None
+				width: 150
+				text: 'Відкрити файл'
+				on_press: main_screen.load_file()
         	TextInput:
+
         		id: input_text
 
 		# ------ settings ------
@@ -61,19 +68,18 @@
         	size_hint: None, 1
         	width: 250
         	orientation: 'lr-tb'
-        	padding: 10
-        	Set:
-        		_text: 'Кількість завдань'
-        		size_hint: 1, None
-        		height: 100
-			Set:
-				_text: 'Кількість варіантів'
-				size_hint: 1, None
-        		height: 100
+			padding: 15
+        	SmallLabel:
+        		text: 'Налаштування'
+
 			VerticalBox:
-				padding: 10
 				size_hint: 1, None
-				height: 150
+				height: 250
+				Set:
+					_text: 'Кількість завдань'
+				Set:
+					_text: 'Кількість варіантів'
+
 				Label:
 					color: 0, 0, 0, 1
 					text: 'Типи завдань:'
@@ -95,8 +101,10 @@
 		VerticalBox:
 			SmallLabel:
 				text: 'Згенеровані тести'
+			RunButton:
+				size_hint: None, None
+				width: 150
+        		text: 'Зберегти тести'
+				on_press: main_screen.save_test()
         	TextInput:
 				id: output_text
-
-
-

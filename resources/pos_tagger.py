@@ -1,7 +1,7 @@
 from resources.tools.read_conll import ConllReader
 
 class POSTagger:
-    def __init__(self, model_file='../ukr/pos_model'):
+    def __init__(self, model_file='ukr/pos_model'):
         self.dictionary = {}
         self.model_file = model_file
         self.load_model()

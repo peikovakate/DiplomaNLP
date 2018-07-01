@@ -1,6 +1,6 @@
-from subprocess import check_output
-from resources.TextAnalyzer import TextAnalyzer
 from resources.tools.read_conll import ConllReader
+from resources.TextAnalyzer import TextAnalyzer
+from subprocess import check_output
 import logging
 
 
@@ -18,8 +18,8 @@ class UDParser:
         pos_tagged_sents = UDParser.tag_sentences(sentences, pos_tags)
         UDParser.sents_to_file(pos_tagged_sents)
 
-        command_str = "java -jar ../YaraParser/YaraParser.jar parse_tagged " \
-                      "-input ../ukr/text_to_parse.txt -out ../ukr/pos_result -model ../ukr/tr_model_iter20"
+        command_str = "java -jar YaraParser/YaraParser.jar parse_tagged " \
+                      "-input ukr/text_to_parse.txt -out ukr/pos_result -model ukr/tr_model_iter20"
 
         # command_str = "java -jar ../YaraParser/YaraParser.jar parse_conll  " \
                       # "-input ../ukr/text_conll_to_parse.conll -out ../ukr/pos_result -model ../ukr/tr_model_iter20"
@@ -27,7 +27,7 @@ class UDParser:
         output = check_output(command_str, shell=True).decode(encoding="utf-8")
         # print(output)
 
-        trees = ConllReader.read("../ukr/pos_result")
+        trees = ConllReader.read("ukr/pos_result")
         graphs = [TextAnalyzer.graph(tree) for tree in trees]
         return graphs
 
@@ -45,7 +45,7 @@ class UDParser:
 
     @staticmethod
     def sents_to_file(lines):
-        file = open("../ukr/text_to_parse.txt", "w", encoding='utf-8')
+        file = open("ukr/text_to_parse.txt", "w", encoding='utf-8')
         for line in lines:
             file.write(line + '\n')
         file.close()

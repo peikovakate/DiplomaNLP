@@ -1,4 +1,5 @@
 from resources.TextAnalyzer import TextAnalyzer, Model
+from resources.TextAnalyzer import Model
 from resources.udp_yara import UDParser
 from resources.question_generator import QuestionGenerator
 from resources.tools.read_conll import ConllReader
@@ -23,16 +24,18 @@ class TestGenerator:
         else:
             nx_ud_graphs, tokens_list = TestGenerator._graph_with_udpipe(sents)
 
+        all_tasks = []
         for i in range(len(nx_ud_graphs)):
             questions = QuestionGenerator.subj_question(nx_ud_graphs[i], tokens_list[i])
-            questions.append(QuestionGenerator.appos_qustion(nx_ud_graphs[i], tokens_list[i]))
-            if len(questions) == 0:
-                test += '-'
-            else:
-                test += '\n'.join(str(q) for q in questions)
-            test += '\n'
+            all_tasks+=questions
+            # questions.append(QuestionGenerator.appos_qustion(nx_ud_graphs[i], tokens_list[i]))
+            # if len(questions) == 0:
+            #     test += '-'
+            # else:
+            #     test += '\n'.join(str(q) for q in questions)
+            # test += '\n'
 
-        return test
+        return all_tasks
 
     @staticmethod
     def _graph_with_yara(sents):
@@ -68,7 +71,7 @@ class TestGenerator:
                 sent = sent.replace('.', '')
             text += sent
 
-        model = Model('../ukr/ukrainian-ud-2.0-170801.udpipe')
+        model = Model('ukr/ukrainian-ud-2.0-170801.udpipe')
         sentences = model.tokenize(text)
         for s in sentences:
             model.tag(s)
