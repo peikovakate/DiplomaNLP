@@ -1,0 +1,7 @@
+SETTINGS_PRIORITY = 1
+
+#PYFORMS_MODE = 'TERMINAL'
+
+PYFORMS_STYLESHEET = 'style/style.css'
+
+
