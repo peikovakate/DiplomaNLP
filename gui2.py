@@ -1,4 +1,4 @@
-import packs.kivy as kivy
+import kivy as kivy
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 kivy.require('1.10.0')
@@ -8,7 +8,7 @@ from tkinter.filedialog import askopenfilename
 from packs.resources.analyzeText import TestGenerator
 from packs.resources.TextAnalyzer import TextAnalyzer
 
-from packs.gensim.models import KeyedVectors
+from gensim.models import KeyedVectors
 
 word_vectors = KeyedVectors.load_word2vec_format('ukr/wordVectors/ubercorpus.lowercased.tokenized.word2vec.300d')
 vecs = word_vectors.wv

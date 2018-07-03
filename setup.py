@@ -6,7 +6,7 @@ from setuptools import setup
 setup(
     name='DiplomaNLP',
     version='1.0',
-    # packages=['resources', 'resources.tools', 'packs.gensim'],
+    # packages=['resources', 'resources.tools',],
     package_dir={'': 'packs'},
     url='',
     license='',

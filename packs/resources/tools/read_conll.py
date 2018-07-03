@@ -3,7 +3,7 @@ class ConllReader:
     @staticmethod
     def read(file_name):
 
-        file = open(file_name, "r", encoding='utf-8')
+        file = open(file_name, "r")
         text = file.read()
         file.close()
         return ConllReader.parse_conll_format(text)

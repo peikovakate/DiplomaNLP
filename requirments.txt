@@ -1,0 +1,9 @@
+networkx
+nltk
+# pymorphy2
+git+https://github.com/kmike/pymorphy2.git
+tokenize_uk
+kivy
+# ufal
+# tkinter
+gensim
