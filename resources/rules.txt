@@ -1,2 +1,0 @@
-nsubj Що _root ?
-appos Що _root ?

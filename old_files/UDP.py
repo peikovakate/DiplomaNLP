@@ -4,7 +4,7 @@ from usurper import soegaard
 from usurper.utils.conll import export_to_conll_format
 import networkx as nx
 import matplotlib.pyplot as plt
-from resources.TextAnalyzer import TextAnalyzer
+from packs.resources.TextAnalyzer import TextAnalyzer
 
 def hierarchy_pos(G, root, width=1., vert_gap = 0.2, vert_loc = 0, xcenter = 0.5,
                   pos = None, parent = None):

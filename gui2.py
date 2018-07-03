@@ -5,26 +5,8 @@ kivy.require('1.10.0')
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
-import networkx as nx
-import random
-import nltk
-import tokenize_uk
-import pymorphy2
-import collections
-import ufal.udpipe
-from subprocess import check_output
-import logging
-
-from resources.analyzeText import TestGenerator
-from resources.TextAnalyzer import TextAnalyzer, Model
-
-from resources.udp_yara import UDParser
-from resources.question_generator import QuestionGenerator
-from resources.tools.read_conll import ConllReader
-from resources.pos_tagger import POSTagger
-
-
-
+from packs.resources.analyzeText import TestGenerator
+from packs.resources.TextAnalyzer import TextAnalyzer
 
 from gensim.models import KeyedVectors
 

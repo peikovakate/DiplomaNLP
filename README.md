@@ -3,6 +3,14 @@ Master diploma project in NLP
 
 **Topic**: Test generation for ukrainian texts
 
+#### Installation
+python setup.py install
+
+поддерживает только файлы в формате utf-8
+
+
+
+
 ---
 ##### Tools and techniques:
 * pymorphy2 - dictionary (opencorpora tags, normal form)
@@ -21,3 +29,4 @@ some problems samples:
 
 NPRO	PRON => NPRO	ADJ
 PREP	ADP => PREP	PRT
+
